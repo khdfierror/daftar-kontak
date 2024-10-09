@@ -41,6 +41,7 @@ return new class extends Migration
 
         Schema::create('data_agenda', function (Blueprint $table) {
             $table->ulid('id')->primary();
+            $table->foreignUlid('kontak_id')->index()->nullable();
             $table->string('nama')->nullable();
             $table->timestamp('tanggal')->nullable();
             $table->timestamp('waktu')->nullable();

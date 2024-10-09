@@ -33,6 +33,20 @@ class AgendaResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('kontak_id')
+                    ->label('Kontak')
+                    ->relationship(
+                    name: 'kontak',
+                        titleAttribute: 'nama_depan',
+                    )
+                    ->searchable()
+                    ->required()
+                    ->validationMessages([
+                        'required' => '*Kontak Wajib di Pilih',
+                    ])
+                    ->preload()
+                    ->native(false)
+                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('nama')
                     ->label('Nama')
                     ->required()
@@ -61,6 +75,9 @@ class AgendaResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('kontak.nama_depan')
+                    ->label('Kontak')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama Agenda')
                     ->searchable(),

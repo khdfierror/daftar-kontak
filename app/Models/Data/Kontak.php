@@ -4,6 +4,7 @@ namespace App\Models\Data;
 
 use App\Concerns\HasUlids;
 use App\Models\Catatan;
+use App\Models\KontakPerusahaan;
 use App\Models\Tugas;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +35,11 @@ class Kontak extends Model
         $query->where('is_aktif', true);
     }
 
+    public function agenda(): HasMany
+    {
+        return $this->hasMany(Agenda::class);
+    }
+
     public function catatan(): HasMany
     {
         return $this->hasMany(Catatan::class);
@@ -42,5 +48,10 @@ class Kontak extends Model
     public function tugas(): HasMany
     {
         return $this->hasMany(Tugas::class);
+    }
+
+    public function kontakPerusahaan(): HasMany
+    {
+        return $this->hasMany(KontakPerusahaan::class);
     }
 }
